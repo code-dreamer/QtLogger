@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <QTDIR>d:\svn\GamaGamaClient\trunk\3rdparty\Qt\Package\Src</QTDIR>
+    <QT_INCLUDE_DIR>$(QTDIR)\Include</QT_INCLUDE_DIR>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup Label="Configuration" />
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalDependencies>qtmaind.lib;QtCored4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(QT_INCLUDE_DIR);$(QT_INCLUDE_DIR)\Qt;$(QT_INCLUDE_DIR)\QtCore;$(QTDIR)\mkspecs\win32-msvc2010;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>QT_DEBUG;QT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Lib />
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="QTDIR">
+      <Value>$(QTDIR)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="QT_INCLUDE_DIR">
+      <Value>$(QT_INCLUDE_DIR)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
