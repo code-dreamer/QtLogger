@@ -4,16 +4,24 @@
 
 #include "logger/impl/logger_lib_switch.h"
 
+
 namespace Logging
 {
 
-class LOGGER_EXPORT Logger : public QObject
-{
-	Q_OBJECT
+enum LogLevel;
 
+class LOGGER_EXPORT Logger
+{
+	Q_DISABLE_COPY(Logger)
+	
 public:
 	Logger();
-	virtual ~Logger();
+	~Logger();
+
+public:
+	//QDebug stream(LogLevel logLevel, const char* file, int line, const char* function);
+	//QDebug stream(qint64 lib_id, const char* file, int line, const char* function);
+	//QDebug stream(const char* lib_id_str, const char* file, int line, const char* function);
 };
 
 } // Logging

@@ -15,23 +15,25 @@
     <ClCompile Include="..\..\..\src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="obj\Debug\moc_logger.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="obj\Release\moc_logger.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\include\logger\impl\global_define_utils.h" />
+    <ClInclude Include="..\..\..\include\logger\log_level.h" />
     <CustomBuild Include="..\..\..\include\logger\logger.h">
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing Logger.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\obj\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\obj\$(ConfigurationName)\moc_%(Filename).cpp"  -DLOGGER_DLL -DDEBUG -D_DEBUG -D_WINDOWS -DWINDOWS -DUNICODE -D_UNICODE -DWIN32 -D_WIN32 -DQT_DEBUG -DQT_DLL -D_WINDLL  "-I$(SolutionDir)..\..\include\logger\impl" "-I." "-I$(IntDir)\." "-I$(SolutionDir)..\..\include" "-I$(QT_INCLUDE_DIR)\." "-I$(QT_INCLUDE_DIR)\Qt" "-I$(QT_INCLUDE_DIR)\QtCore" "-I$(QTDIR)\mkspecs\win32-msvc2010" "-fstdafx.h" "-f../../../../../include/logger/logger.h"</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing Logger.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\obj\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\obj\$(ConfigurationName)\moc_%(Filename).cpp"  -DLOGGER_DLL -DNDEBUG -D_WINDOWS -DWINDOWS -DUNICODE -D_UNICODE -DWIN32 -D_WIN32 -DQT_NO_DEBUG -DQT_DLL -D_WINDLL  "-I$(SolutionDir)..\..\include\logger\impl" "-I." "-I$(IntDir)\." "-I$(SolutionDir)..\..\include" "-I$(QT_INCLUDE_DIR)\." "-I$(QT_INCLUDE_DIR)\Qt" "-I$(QT_INCLUDE_DIR)\QtCore" "-I$(QTDIR)\mkspecs\win32-msvc2010"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </Command>
     </CustomBuild>
     <ClInclude Include="..\..\..\include\logger\impl\disable_weak_warnings.h" />
     <ClInclude Include="..\..\..\include\logger\impl\global_header.h" />

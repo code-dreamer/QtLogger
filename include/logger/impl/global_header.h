@@ -5,8 +5,13 @@
 
 #pragma once
 
-#include "disable_weak_warnings.h"
+#include "logger/impl/disable_weak_warnings.h"
+
+
+#define _S QLatin1String
 
 #pragma warning(push, 0) 
 #include "Qt.h"
 #pragma warning(pop)
+
+#include "logger/impl/global_define_utils.h"
