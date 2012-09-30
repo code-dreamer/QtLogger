@@ -1,5 +1,9 @@
 #include <QtCore/QCoreApplication>
+
+#pragma warning(disable: 4127)
+
 #include "logger/logger.h"
+#include "logger/log_level.h"
 
 void TestLogSingleton()
 {/*
@@ -24,7 +28,7 @@ void TestLog()
 	const qint64 first_lib_id = 0x2a3e2ddb799b6970;
 	const char first_lib_id_str[] = "first_lib_id";
 
-	//Logging::Logger* custom_logger = Logging::create_logger();
+	Logging::Logger* custom_logger = Logging::create_logger();
 	//custom_logger->set_additional_capture_info( Logging::thread_id_info );
 
 	//ConsoleAppender* consoleAppender = new ConsoleAppender();
@@ -34,7 +38,7 @@ void TestLog()
 	QString message = "message";
 
 	// using custom logger object
-	//custom_logger->stream(Logging::Debug, __FILE__, __LINE__, Q_FUNC_INFO) << message << ++i;
+	//custom_logger->stream(Logging::DebugLevel, __FILE__, __LINE__, Q_FUNC_INFO) << message << ++i;
 	//custom_logger->stream(lib_id, Logging::Debug, __FILE__, __LINE__, Q_FUNC_INFO) << message << ++i;
 	//custom_logger->stream(lib_id_str, Logging::Debug, __FILE__, __LINE__, Q_FUNC_INFO) << message << ++i;
 }

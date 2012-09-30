@@ -12,12 +12,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Src\logger.cpp" />
-    <ClCompile Include="..\..\..\src\stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\..\..\src\log_writer.cpp" />
+    <ClCompile Include="..\..\..\src\writer_device.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\include\logger\impl\global_define_utils.h" />
+    <ClInclude Include="..\..\..\include\logger\impl\defs_utils.h" />
+    <ClInclude Include="..\..\..\include\logger\impl\log_writer.h" />
+    <ClInclude Include="..\..\..\include\logger\impl\writer_device.h" />
     <ClInclude Include="..\..\..\include\logger\log_level.h" />
     <CustomBuild Include="..\..\..\include\logger\logger.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalInputs)</AdditionalInputs>
@@ -35,11 +36,7 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </Command>
     </CustomBuild>
-    <ClInclude Include="..\..\..\include\logger\impl\disable_weak_warnings.h" />
-    <ClInclude Include="..\..\..\include\logger\impl\global_header.h" />
     <ClInclude Include="..\..\..\include\logger\impl\logger_lib_switch.h" />
-    <ClInclude Include="..\..\..\include\logger\impl\qt.h" />
-    <ClInclude Include="..\..\..\include\logger\impl\stdafx.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{12474300-872E-498B-863A-7A653F421D92}</ProjectGuid>
@@ -83,9 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>LOGGER_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\include\logger\impl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/wd 4127 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -97,7 +92,6 @@
       <DebugInformationFormat>
       </DebugInformationFormat>
       <PreprocessorDefinitions>LOGGER_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\include\logger\impl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

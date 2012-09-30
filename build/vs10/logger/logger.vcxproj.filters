@@ -41,30 +41,27 @@
     <ClCompile Include="..\..\..\Src\Logger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\stdafx.cpp">
+    <ClCompile Include="..\..\..\src\log_writer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\writer_device.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\include\logger\impl\global_header.h">
-      <Filter>Header Files\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\logger\impl\qt.h">
-      <Filter>Header Files\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\logger\impl\stdafx.h">
-      <Filter>Header Files\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\logger\impl\disable_weak_warnings.h">
-      <Filter>Header Files\impl</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\include\logger\impl\logger_lib_switch.h">
       <Filter>Header Files\impl</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\logger\log_level.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\logger\impl\global_define_utils.h">
+    <ClInclude Include="..\..\..\include\logger\impl\log_writer.h">
+      <Filter>Header Files\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\logger\impl\writer_device.h">
+      <Filter>Header Files\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\logger\impl\defs_utils.h">
       <Filter>Header Files\impl</Filter>
     </ClInclude>
   </ItemGroup>

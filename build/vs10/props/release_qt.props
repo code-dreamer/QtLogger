@@ -14,7 +14,7 @@
     </Link>
     <ClCompile>
       <AdditionalIncludeDirectories>$(QT_INCLUDE_DIR);$(QT_INCLUDE_DIR)\Qt;$(QT_INCLUDE_DIR)\QtCore;$(QTDIR)\mkspecs\win32-msvc2010;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>QT_NO_DEBUG;QT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>QT_NO_DEBUG;QT_DLL;QT_NO_CAST_FROM_ASCII;QT_NO_CAST_TO_ASCII;QT_NO_CAST_FROM_BYTEARRAY;QT_USE_FAST_CONCATENATION;QT_USE_FAST_OPERATOR_PLUS;QT_LARGEFILE_SUPPORT;QT_NO_KEYWORDS;QT_USE_QSTRINGBUILDER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Lib />
   </ItemDefinitionGroup>
