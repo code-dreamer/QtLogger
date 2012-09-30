@@ -28,14 +28,14 @@ void TestLog()
 	const qint64 first_lib_id = 0x2a3e2ddb799b6970;
 	const char first_lib_id_str[] = "first_lib_id";
 
-	Logging::Logger* custom_logger = Logging::create_logger();
+	logging::logger* custom_logger = logging::create_logger();
 	//custom_logger->set_additional_capture_info( Logging::thread_id_info );
 
 	//ConsoleAppender* consoleAppender = new ConsoleAppender();
 	//custom_logger->registerAppender(consoleAppender);
 
 	int i = 0;
-	QString message = "message";
+	QString message = QLatin1String("message");
 
 	// using custom logger object
 	//custom_logger->stream(Logging::DebugLevel, __FILE__, __LINE__, Q_FUNC_INFO) << message << ++i;

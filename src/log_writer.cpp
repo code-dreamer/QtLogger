@@ -5,7 +5,7 @@
 #include "logger/impl/log_writer.h"
 #include "logger/impl/writer_device.h"
 
-using namespace Logging::Impl;
+using namespace logging::impl;
 
 log_writer::log_writer()
 	: writer_device_( new writer_device() )

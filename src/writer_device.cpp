@@ -1,7 +1,7 @@
 #include "logger/impl/defs_utils.h"
 #include "logger/impl/writer_device.h"
 
-using namespace Logging::Impl;
+using namespace logging::impl;
 
 writer_device::writer_device()
 	: QIODevice()

@@ -4,9 +4,9 @@
 #include <QIODevice>
 #pragma warning(pop)
 
-namespace Logging
+namespace logging
 {
-namespace Impl
+namespace impl
 {
 
 class writer_device : public QIODevice
@@ -22,5 +22,5 @@ protected:
 	virtual qint64 writeData(const char* data, qint64 maxSize);
 };
 
-} // Impl
-} // Logging
+} // impl
+} // logging

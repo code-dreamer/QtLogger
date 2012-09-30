@@ -7,39 +7,39 @@
 
 #include "logger/impl/logger_lib_switch.h"
 
-namespace Logging
+namespace logging
 {
 
-enum LogLevel;
+enum log_level;
 
-namespace Impl
+namespace impl
 {
 class log_writer;
 }
 
-class LOGGER_EXPORT Logger
+class LOGGER_EXPORT logger
 {
-	Q_DISABLE_COPY(Logger)
+	Q_DISABLE_COPY(logger)
 	
-	friend LOGGER_EXPORT Logger* create_logger();
+	friend LOGGER_EXPORT logger* create_logger();
 	
 public:
-	~Logger();
+	~logger();
 private:
-	Logger();
+	logger();
 
 public:
-	QDebug stream(LogLevel logLevel, const char* file, int line, const char* function);
+	QDebug stream(log_level log_level, const char* file, int line, const char* function);
 	//QDebug stream(qint64 lib_id, const char* file, int line, const char* function);
 	//QDebug stream(const char* lib_id_str, const char* file, int line, const char* function);
 	
 #pragma warning(push)
 #pragma warning(disable : 4251)
 private:
-	QScopedPointer<Impl::log_writer> log_writer_;
+	QScopedPointer<impl::log_writer> log_writer_;
 #pragma warning(pop)
 };
 
-LOGGER_EXPORT Logger* create_logger();
+LOGGER_EXPORT logger* create_logger();
 
-} // Logging
+} // logging

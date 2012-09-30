@@ -4,19 +4,19 @@
 #include "logger/impl/log_writer.h"
 #include "logger/impl/defs_utils.h"
 
-using namespace Logging;
+using namespace logging;
 
-Logger::Logger()
-	: log_writer_( new Impl::log_writer() )
+logger::logger()
+	: log_writer_( new impl::log_writer() )
 {
 
 }
 
-Logger::~Logger()
+logger::~logger()
 {
 }
 
-QDebug Logger::stream(LogLevel UNUSED(logLevel), const char* UNUSED(file), int UNUSED(line), const char* UNUSED(function))
+QDebug logger::stream(log_level UNUSED(log_level), const char* UNUSED(file), int UNUSED(line), const char* UNUSED(function))
 {
 	Q_CHECK_PTR(log_writer_);
 	return log_writer_->stream();
@@ -34,7 +34,7 @@ QDebug Logger::stream(const char* lib_id_str, const char* file, int line, const 
 }
 */
 
-Logger* Logging::create_logger()
+logger* logging::create_logger()
 {
-	return new Logger();
+	return new logger();
 }

@@ -4,9 +4,9 @@
 #include <QScopedPointer>
 #pragma warning(pop)
 
-namespace Logging
+namespace logging
 {
-namespace Impl
+namespace impl
 {
 
 class writer_device;
@@ -24,5 +24,5 @@ private:
 	QScopedPointer<writer_device> writer_device_;
 };
 
-} // Impl
-} // Logging
+} // impl
+} // logging
