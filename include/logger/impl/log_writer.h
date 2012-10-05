@@ -15,6 +15,8 @@ class writer_device;
 
 class log_writer
 {
+	Q_DISABLE_COPY(log_writer);
+
 public:
 	log_writer();
 	~log_writer();
