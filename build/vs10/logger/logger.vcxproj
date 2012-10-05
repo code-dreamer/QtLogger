@@ -13,12 +13,31 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\Src\logger.cpp" />
     <ClCompile Include="..\..\..\src\log_writer.cpp" />
+    <ClCompile Include="..\..\..\src\stream_holder.cpp" />
+    <ClCompile Include="..\..\..\src\stream_holder_data.cpp" />
     <ClCompile Include="..\..\..\src\writer_device.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\logger\impl\defs_utils.h" />
     <ClInclude Include="..\..\..\include\logger\impl\log_writer.h" />
-    <ClInclude Include="..\..\..\include\logger\impl\writer_device.h" />
+    <ClInclude Include="..\..\..\include\logger\impl\stream_holder_data.h" />
+    <ClInclude Include="..\..\..\include\logger\stream_holder.h" />
+    <CustomBuild Include="..\..\..\include\logger\impl\writer_device.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </Command>
+    </CustomBuild>
     <ClInclude Include="..\..\..\include\logger\log_level.h" />
     <CustomBuild Include="..\..\..\include\logger\logger.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalInputs)</AdditionalInputs>

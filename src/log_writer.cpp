@@ -11,10 +11,6 @@ using namespace logging::impl;
 log_writer::log_writer()
 {
 	writer_device_.reset(new writer_device(this));
-
-	if (!writer_device_->isOpen()) {
-		writer_device_->open(QIODevice::WriteOnly);
-	}
 }
 
 log_writer::~log_writer()
@@ -27,12 +23,15 @@ QDebug log_writer::stream()
 	return QDebug(writer_device_.data());
 }*/
 
-QDebug log_writer::prepare_stream(logging::log_level log_level, const char* filename, int line, const char* function)
+logging::stream_holder log_writer::prepare_stream(logging::log_level log_level, const char* filename, int line, const char* function_name)
 {
-	Q_ASSERT(writer_device_->isOpen());
+	write_stage_guarder_.lock();
 
-	writer_device_->set_log_info(log_level, filename, line, function);
-	return QDebug(writer_device_.data());
+	writer_device_->init_write_stage(log_level, filename, line, function_name);
+
+	return stream_holder( QDebug(writer_device_.data()), [&]() {
+		write_stage_guarder_.unlock();
+	} );
 }
 
 void log_writer::write(logging::log_level log_level, const char* file, int line, const char* function_name, const QString& message)

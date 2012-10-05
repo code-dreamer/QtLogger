@@ -2,7 +2,6 @@
 
 #pragma warning(push, 0)
 #include <QIODevice>
-#include <functional>
 #pragma warning(pop)
 
 #include "logger/log_level.h"
@@ -23,7 +22,7 @@ public:
 	virtual ~writer_device();
 
 public:
-	void set_log_info(logging::log_level log_level, const char* filename, int line, const char* function_name);
+	void init_write_stage(logging::log_level log_level, const char* filename, int line, const char* function_name);
 
 protected:
 	virtual qint64 readData(char*, qint64) override;

@@ -16,7 +16,7 @@ logger::~logger()
 {
 }
 
-QDebug logger::stream(log_level log_level, const char* file, int line, const char* function)
+stream_holder logger::stream(log_level log_level, const char* file, int line, const char* function)
 {
 	Q_CHECK_PTR(log_writer_);
 

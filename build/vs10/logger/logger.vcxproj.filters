@@ -47,6 +47,12 @@
     <ClCompile Include="..\..\..\src\writer_device.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\stream_holder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\stream_holder_data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\logger\impl\logger_lib_switch.h">
@@ -58,16 +64,22 @@
     <ClInclude Include="..\..\..\include\logger\impl\log_writer.h">
       <Filter>Header Files\impl</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\logger\impl\writer_device.h">
+    <ClInclude Include="..\..\..\include\logger\impl\defs_utils.h">
       <Filter>Header Files\impl</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\logger\impl\defs_utils.h">
+    <ClInclude Include="..\..\..\include\logger\stream_holder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\logger\impl\stream_holder_data.h">
       <Filter>Header Files\impl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\..\Include\Logger\Logger.h">
       <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\include\logger\impl\writer_device.h">
+      <Filter>Header Files\impl</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

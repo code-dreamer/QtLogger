@@ -16,7 +16,6 @@ writer_device::writer_device(log_writer* log_writer)
 
 writer_device::~writer_device()
 {
-
 }
 
 qint64 writer_device::readData(char* UNUSED(data), qint64 UNUSED(maxlen))
@@ -34,8 +33,12 @@ qint64 writer_device::writeData(const char* data, qint64 maxSize)
 	return maxSize;
 }
 
-void writer_device::set_log_info(logging::log_level log_level, const char* filename, int line, const char* function_name)
-{
+void writer_device::init_write_stage(logging::log_level log_level, const char* filename, int line, const char* function_name)
+{	
+	if (!QIODevice::isOpen()) {
+		QIODevice::open(QIODevice::WriteOnly);
+	}
+
 	log_Level_ = log_level;
 	filename_ = filename;
 	line_ = line;
