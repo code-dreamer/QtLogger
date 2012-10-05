@@ -16,10 +16,11 @@ logger::~logger()
 {
 }
 
-QDebug logger::stream(log_level UNUSED(log_level), const char* UNUSED(file), int UNUSED(line), const char* UNUSED(function))
+QDebug logger::stream(log_level log_level, const char* file, int line, const char* function)
 {
 	Q_CHECK_PTR(log_writer_);
-	return log_writer_->stream();
+
+	return log_writer_->prepare_stream(log_level, file, line, function);
 }
 
 /*
@@ -33,6 +34,11 @@ QDebug Logger::stream(const char* lib_id_str, const char* file, int line, const 
 
 }
 */
+
+void logger::write(log_level log_level, const char* file, int line, const char* function_name, const QString& message)
+{
+	log_writer_->write(log_level, file, line, function_name, message);
+}
 
 logger* logging::create_logger()
 {

@@ -29,9 +29,10 @@ private:
 	logger();
 
 public:
-	QDebug stream(log_level log_level, const char* file, int line, const char* function);
+	QDebug stream(log_level log_level, const char* file, int line, const char* function_name);
 	//QDebug stream(qint64 lib_id, const char* file, int line, const char* function);
 	//QDebug stream(const char* lib_id_str, const char* file, int line, const char* function);
+	void write(log_level log_level, const char* file, int line, const char* function_name, const QString& message);
 	
 #pragma warning(push)
 #pragma warning(disable : 4251)
