@@ -1,56 +1,85 @@
 #include "logger/stream_holder.h"
-#include "logger/impl/stream_holder_data.h"
+#include "logger/log_level.h"
+#include "logger/impl/log_writer.h"
 
 using namespace logging;
 
-stream_holder::stream_holder() 
-	: data_( new impl::stream_holder_data() )
+namespace logging
 {
-	data_->ref.ref();
+namespace impl
+{
+struct stream_holder_data
+{
+	Q_DISABLE_COPY(stream_holder_data)
+
+	stream_holder_data(logging::impl::log_writer* log_writer)
+	: stream_(&buffer_)
+	, log_writer_(log_writer)
+	, log_Level_(logging::debug_level)
+	, filename_(nullptr)
+	, line_(-1)
+	, function_name_(nullptr)
+	{}
+
+	~stream_holder_data()
+	{
+		Q_CHECK_PTR(log_writer_);
+		log_writer_->write(log_Level_, filename_, line_, function_name_, buffer_);
+	}
+
+	QDebug stream_;
+	QString buffer_;
+
+	logging::impl::log_writer* log_writer_;
+	logging::log_level log_Level_;
+	const char* filename_;
+	int line_;
+	const char* function_name_;
+};
+} // namespace impl
+} // namespace logging
+
+stream_holder::stream_holder(logging::impl::log_writer* log_writer) 
+	: shared_data_( new impl::stream_holder_data(log_writer) )
+{
+	Q_CHECK_PTR(log_writer);
 }
 
-stream_holder::stream_holder(const stream_holder& other)
+stream_holder::stream_holder(stream_holder& other)
 {
-	data_ = other.data_;
-	data_->ref.ref();
+	shared_data_ = other.shared_data_;
+	other.shared_data_ = nullptr;
 }
 
 stream_holder::~stream_holder() 
 {
-	if ( !data_->ref.deref() ) {
-		Q_CHECK_PTR(data_);
-		delete data_; // this is last reference
+	if ( shared_data_ != nullptr ) {
+		delete shared_data_; // this is last reference
+		shared_data_ = nullptr;
 	}
 }
 
 QDebug& stream_holder::stream() const
 {
-	return data_->stream();
-}
-
-void stream_holder::set_writer(logging::impl::log_writer* log_writer)
-{
-	Q_CHECK_PTR(log_writer);
-	
-	data_->set_writer(log_writer);
+	return shared_data_->stream_;
 }
 
 void stream_holder::set_log_level(logging::log_level log_level)
 {
-	data_->set_log_level(log_level);
+	shared_data_->log_Level_ = log_level;
 }
 
 void stream_holder::set_filename(const char* filename)
 {
-	data_->set_filename(filename);
+	shared_data_->filename_ = filename;
 }
 
 void stream_holder::set_line(int line)
 {
-	data_->set_line(line);
+	shared_data_->line_ = line;
 }
 
 void stream_holder::set_function_name(const char* function_name)
 {
-	data_->set_function_name(function_name);
+	shared_data_->function_name_ = function_name;
 }

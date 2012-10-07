@@ -14,12 +14,10 @@
     <ClCompile Include="..\..\..\Src\logger.cpp" />
     <ClCompile Include="..\..\..\src\log_writer.cpp" />
     <ClCompile Include="..\..\..\src\stream_holder.cpp" />
-    <ClCompile Include="..\..\..\src\stream_holder_data.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\logger\impl\defs_utils.h" />
     <ClInclude Include="..\..\..\include\logger\impl\log_writer.h" />
-    <ClInclude Include="..\..\..\include\logger\impl\stream_holder_data.h" />
     <ClInclude Include="..\..\..\include\logger\stream_holder.h" />
     <ClInclude Include="..\..\..\include\logger\log_level.h" />
     <CustomBuild Include="..\..\..\include\logger\logger.h">

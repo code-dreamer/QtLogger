@@ -17,8 +17,7 @@ log_writer::~log_writer()
 
 logging::stream_holder log_writer::make_stream(logging::log_level log_level, const char* filename, int line, const char* function_name)
 {
-	stream_holder stream_holder;
-	stream_holder.set_writer(this);
+	stream_holder stream_holder(this);
 	stream_holder.set_log_level(log_level);
 	stream_holder.set_filename(filename);
 	stream_holder.set_line(line);

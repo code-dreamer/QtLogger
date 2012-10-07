@@ -47,9 +47,6 @@
     <ClCompile Include="..\..\..\src\stream_holder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\stream_holder_data.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\logger\impl\logger_lib_switch.h">
@@ -66,9 +63,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\include\logger\stream_holder.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\logger\impl\stream_holder_data.h">
-      <Filter>Header Files\impl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

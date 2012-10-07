@@ -68,8 +68,9 @@ void TestLog()
 	//}
 
 	// using custom logger object
-	logging::stream_holder sh = custom_logger->make_stream(logging::debug_level, __FILE__, __LINE__, Q_FUNC_INFO);
-	sh << message;
+	//logging::stream_holder sh = custom_logger->make_stream(logging::debug_level, __FILE__, __LINE__, Q_FUNC_INFO);
+	//sh.stream() << message;
+	custom_logger->make_stream(logging::debug_level, __FILE__, __LINE__, Q_FUNC_INFO).stream() << message << message;
 	//custom_logger->stream(logging::debug_level, __FILE__, __LINE__, Q_FUNC_INFO) << message << ++i;
 	//custom_logger->stream(lib_id, Logging::Debug, __FILE__, __LINE__, Q_FUNC_INFO) << message << ++i;
 	//custom_logger->stream(lib_id_str, Logging::Debug, __FILE__, __LINE__, Q_FUNC_INFO) << message << ++i;
