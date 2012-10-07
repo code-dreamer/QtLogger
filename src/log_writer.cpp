@@ -3,35 +3,28 @@
 #pragma warning(pop)
 
 #include "logger/impl/log_writer.h"
-#include "logger/impl/writer_device.h"
 #include "logger/log_level.h"
 
 using namespace logging::impl;
 
 log_writer::log_writer()
 {
-	writer_device_.reset(new writer_device(this));
 }
 
 log_writer::~log_writer()
 {
 }
 
-/*
-QDebug log_writer::stream()
+logging::stream_holder log_writer::make_stream(logging::log_level log_level, const char* filename, int line, const char* function_name)
 {
-	return QDebug(writer_device_.data());
-}*/
+	stream_holder stream_holder;
+	stream_holder.set_writer(this);
+	stream_holder.set_log_level(log_level);
+	stream_holder.set_filename(filename);
+	stream_holder.set_line(line);
+	stream_holder.set_function_name(function_name);
 
-logging::stream_holder log_writer::prepare_stream(logging::log_level log_level, const char* filename, int line, const char* function_name)
-{
-	write_stage_guarder_.lock();
-
-	writer_device_->init_write_stage(log_level, filename, line, function_name);
-
-	return stream_holder( QDebug(writer_device_.data()), [&]() {
-		write_stage_guarder_.unlock();
-	} );
+	return stream_holder;
 }
 
 void log_writer::write(logging::log_level log_level, const char* file, int line, const char* function_name, const QString& message)

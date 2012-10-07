@@ -16,11 +16,11 @@ logger::~logger()
 {
 }
 
-stream_holder logger::stream(log_level log_level, const char* file, int line, const char* function)
+stream_holder logger::make_stream(log_level log_level, const char* file, int line, const char* function)
 {
 	Q_CHECK_PTR(log_writer_);
 
-	return log_writer_->prepare_stream(log_level, file, line, function);
+	return log_writer_->make_stream(log_level, file, line, function);
 }
 
 /*

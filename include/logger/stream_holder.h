@@ -1,37 +1,48 @@
 #pragma once
 
+#pragma warning(push, 0)
 #include <functional>
+#include <QVariant>
+#include <QDebug>
+#pragma warning(pop)
+
 #include "logger/impl/logger_lib_switch.h"
 
 namespace logging
 {
+
+enum log_level;
+
 namespace impl
 {
 class stream_holder_data;
-}
-
-typedef std::function<void()> delete_handler;
+class log_writer;
+};
 
 class LOGGER_EXPORT stream_holder
 {
 public:
-	stream_holder(const QDebug& stream, delete_handler delete_handler);
+	stream_holder();
 	stream_holder(const stream_holder& other);
 	~stream_holder();
 
 public:
-	operator QDebug&();
+	QDebug& stream() const;
+
+public:
+	void set_writer(logging::impl::log_writer* log_writer);
+	void set_log_level(logging::log_level log_level);
+	void set_filename(const char* filename);
+	void set_line(int line);
+	void set_function_name(const char* function_name);
 
 private:
 	stream_holder& stream_holder::operator=(const stream_holder&);
 
 private:
 	impl::stream_holder_data* data_;
-
-#pragma warning(push)
-#pragma warning(disable : 4251)
-private:
-	delete_handler delete_handler_;
-#pragma warning(pop)
 };
 } // logging namespace
+
+// operator QDebug&() not overloarded for stream_holder. 
+// In this case QDebug operator<<(QDebug, const QVariant &) will be called

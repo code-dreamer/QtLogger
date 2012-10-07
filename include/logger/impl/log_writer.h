@@ -24,13 +24,9 @@ public:
 	~log_writer();
 
 public:
-	logging::stream_holder prepare_stream(logging::log_level log_level, const char* filename, int line, const char* function_name);
+	logging::stream_holder make_stream(logging::log_level log_level, const char* filename, int line, const char* function_name);
 	
 	void write(log_level log_level, const char* file, int line, const char* function_name, const QString& message);
-
-private:
-	QScopedPointer<writer_device> writer_device_;
-	QMutex write_stage_guarder_;
 };
 
 } // impl
