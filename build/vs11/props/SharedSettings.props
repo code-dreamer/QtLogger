@@ -1,13 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
-  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Label="UserMacros">
+    <BUILD_DIR>$(SolutionDir)..\..\lib\$(Configuration)\</BUILD_DIR>
+    <BUILD_TMP_DIR>$(ProjectDir)\obj\$(Configuration)\</BUILD_TMP_DIR>
+  </PropertyGroup>
   <PropertyGroup>
     <LinkIncremental>true</LinkIncremental>
-    <TargetName>$(ProjectName)d</TargetName>
-    <IntDir>$(SolutionDir)\obj\$(Configuration)\</IntDir>
+    <IntDir>$(BUILD_TMP_DIR)</IntDir>
+    <OutDir>$(BUILD_DIR)</OutDir>
     <RunCodeAnalysis>false</RunCodeAnalysis>
-    <OutDir>$(SolutionDir)..\..\lib\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
     <BuildLogFile>
@@ -15,7 +17,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup>
@@ -26,24 +28,24 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>DEBUG;_DEBUG;_WINDOWS;WINDOWS;UNICODE;_UNICODE;WIN32;_WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PreprocessorDefinitions>_WINDOWS;WINDOWS;UNICODE;_UNICODE;WIN32;_WIN32;_BIND_TO_CURRENT_VCLIBS_VERSION=1;_CRT_SECURE_NO_DEPRECATE=1;_CRT_SECURE_NO_WARNINGS=1;_CRT_NONSTDC_NO_WARNINGS=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ExceptionHandling>Async</ExceptionHandling>
       <SmallerTypeCheck>true</SmallerTypeCheck>
-      <AdditionalOptions>/wd4820 /wd4986 /wd4619 /wd4365 /wd4481 /wd4514 /wd4625 /wd4626 /wd4710 /wd4668 %(AdditionalOptions)</AdditionalOptions>
-      <EnablePREfast>false</EnablePREfast>
+      <AdditionalOptions>/wd4127 /wd4191 /wd4365 /wd4481 /wd4512 /wd4514 /wd4619 /wd4625 /wd4626 /wd4710 /wd4668 /wd4820 /wd4986 %(AdditionalOptions)</AdditionalOptions>
+      <EnablePREfast>true</EnablePREfast>
       <CompileAsManaged>false</CompileAsManaged>
-      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
       <AdditionalIncludeDirectories>.\;$(IntDir);$(SolutionDir)..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <EnableEnhancedInstructionSet>NoExtensions</EnableEnhancedInstructionSet>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>$(BUILD_DIR)\;$(VLD_DIR)\lib\Win32;$(BOOST_DIR)\lib</AdditionalLibraryDirectories>
       <DelayLoadDLLs>
       </DelayLoadDLLs>
       <AdditionalOptions>/ignore:4199 %(AdditionalOptions)</AdditionalOptions>
@@ -51,8 +53,15 @@
     <PostBuildEvent />
     <PostBuildEvent />
     <Lib>
-      <AdditionalLibraryDirectories>$(BUILD_DIR)\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(BUILD_DIR)\;$(VLD_DIR)\lib\Win32;$(BOOST_DIR)\lib</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BuildMacro Include="BUILD_DIR">
+      <Value>$(BUILD_DIR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BUILD_TMP_DIR">
+      <Value>$(BUILD_TMP_DIR)</Value>
+    </BuildMacro>
+  </ItemGroup>
 </Project>

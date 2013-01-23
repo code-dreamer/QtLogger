@@ -49,25 +49,23 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\include\logger\impl\logger_lib_switch.h">
-      <Filter>Header Files\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\logger\log_level.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\logger\impl\log_writer.h">
-      <Filter>Header Files\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\logger\impl\defs_utils.h">
-      <Filter>Header Files\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\logger\stream_holder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
     <CustomBuild Include="..\..\..\Include\Logger\Logger.h">
       <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\include\logger\stream_holder.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\include\logger\log_level.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\include\logger\impl\log_writer.h">
+      <Filter>Header Files\impl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\include\logger\impl\logger_lib_switch.h">
+      <Filter>Header Files\impl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\include\logger\impl\utils.h">
+      <Filter>Header Files\impl</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>
