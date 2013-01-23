@@ -15,11 +15,25 @@ logger::~logger()
 {
 }
 
-stream_holder logger::make_stream(log_level log_level, const char* file, int line, const char* function)
+stream_holder logger::make_stream(log_level log_level, const char* file, int line, const char* function_name)
 {
 	CHECK_PTR(log_writer_);
+	CHECK_CSTRING(file);
+	ASSERT(line > 0);
+	CHECK_CSTRING(function_name);
 
-	return log_writer_->make_stream(log_level, file, line, function);
+	return log_writer_->make_stream(log_level, file, line, function_name);
+}
+
+stream_holder logger::make_stream(const char* module_id, log_level log_level, const char* file, int line, const char* function_name)
+{
+	CHECK_PTR(log_writer_);
+	CHECK_CSTRING(function_name);
+	CHECK_CSTRING(file);
+	ASSERT(line > 0);
+	CHECK_CSTRING(module_id);
+
+	return log_writer_->make_stream(log_level, module_id, file, line, function_name);
 }
 
 /*
@@ -34,9 +48,9 @@ QDebug Logger::stream(const char* lib_id_str, const char* file, int line, const 
 }
 */
 
-void logger::write(log_level log_level, const char* file, int line, const char* function_name, const QString& message)
+void logger::write(const log_info& log_info, const QString& message)
 {
-	log_writer_->write(log_level, file, line, function_name, message);
+	log_writer_->write(log_info, message);
 }
 
 logger* logging::create_logger()

@@ -24,14 +24,6 @@
 #	define ASSERT(condition)	assert(condition)
 #endif
 
-#if defined(CHECK_PTR)
-#	pragma message ("CHECK_PTR already defined.")
-#else
-#	define CHECK_PTR(pointer)								\
-	ASSERT_MSG(pointer != nullptr, "Invalid pointer");		\
-	Q_CHECK_PTR(pointer)
-#endif
-
 #if defined(ASSERT_MSG)
 #	pragma message ("ASSERT_MSG already defined.")
 #else
@@ -41,6 +33,45 @@
 #	else
 #		define ASSERT_MSG(condition, message) ((void)0)
 #	endif
+#endif
+
+
+#if defined(CHECK_PTR)
+#	pragma message ("CHECK_PTR already defined.")
+#else
+#	define CHECK_PTR(pointer)								\
+	ASSERT_MSG(pointer != nullptr, "Invalid pointer");		\
+	Q_CHECK_PTR(pointer)
+#endif
+
+#if defined(CHECK_QSTRING)
+#	pragma message ("CHECK_QSTRING already defined.")
+#else
+#	define CHECK_QSTRING(qstring)							\
+	ASSERT( !qstring.isEmpty() )
+#endif
+
+#if defined(CHECK_STDSTRING)
+#	pragma message ("CHECK_STDSTRING already defined.")
+#else
+#	define CHECK_STDSTRING(stdstring)						\
+	ASSERT( !stdstring.isEmpty() )
+#endif
+
+#if defined(CHECK_CSTRING)
+#	pragma message ("CHECK_CSTRING already defined.")
+#else
+#	define CHECK_CSTRING(cstring)							\
+	CHECK_PTR(cstring);	\
+	ASSERT(strlen(cstring) > 0);
+#endif
+
+#if defined(CHECK_CWSTRING)
+#	pragma message ("CHECK_CWSTRING already defined.")
+#else
+#	define CHECK_CWSTRING(cwstring)							\
+	CHECK_PTR(cwstring);									\
+	ASSERT(wcslen(cwstring) > 0);
 #endif
 
 

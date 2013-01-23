@@ -18,6 +18,17 @@ struct stream_holder_data;
 class log_writer;
 }; // namespace impl
 
+struct LOGGER_EXPORT log_info
+{
+	log_info();
+
+	logging::log_level log_level;
+	const char* module_id;
+	const char* filename;
+	int line;
+	const char* function_name;
+};
+
 class LOGGER_EXPORT stream_holder
 {
 public:
@@ -28,14 +39,17 @@ public:
 	~stream_holder();
 
 public:
-	QDebug& stream() const;
+	QDebug& out() const;
 
+public: // TODO: make private
+	log_info& log_info();
+	/*
 public:
 	void set_log_level(logging::log_level log_level);
 	void set_filename(const char* filename);
 	void set_line(int line);
 	void set_function_name(const char* function_name);
-
+	*/
 //private:
 	//stream_holder& stream_holder::operator=(const stream_holder&);
 

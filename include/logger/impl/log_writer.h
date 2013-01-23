@@ -25,8 +25,10 @@ public:
 
 public:
 	logging::stream_holder make_stream(logging::log_level log_level, const char* filename, int line, const char* function_name);
+	logging::stream_holder make_stream(log_level log_level, const char* module_id, const char* file, int line, const char* function_name);
 	
-	void write(log_level log_level, const char* file, int line, const char* function_name, const QString& message);
+	void write(const logging::log_info& log_info, const QString& message);
+	//void write(log_level log_level, const char* file, int line, const char* function_name, const QString& message);
 };
 
 } // impl

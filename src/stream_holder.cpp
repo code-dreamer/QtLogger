@@ -13,32 +13,38 @@ struct stream_holder_data
 	Q_DISABLE_COPY(stream_holder_data)
 
 	stream_holder_data(logging::impl::log_writer* log_writer)
-	: stream_(&buffer_)
+	: stream_(&log_line_)
 	, log_writer_(log_writer)
-	, log_Level_(logging::log_level::debug_level)
-	, filename_(nullptr)
-	, line_(-1)
-	, function_name_(nullptr)
 	{}
 
 	~stream_holder_data()
 	{
 		CHECK_PTR(log_writer_);
-		log_writer_->write(log_Level_, filename_, line_, function_name_, buffer_);
+		//log_writer_->write(log_Level_, filename_, line_, function_name_, buffer_);
+		log_writer_->write(log_info_, log_line_);
 	}
 
 	QDebug stream_;
-	QString buffer_;
+	QString log_line_;
 
 	logging::impl::log_writer* log_writer_;
-	logging::log_level log_Level_;
+	/*logging::log_level log_Level_;
 	const char* filename_;
 	int line_;
-	const char* function_name_;
+	const char* function_name_;*/
+	logging::log_info log_info_;
 };
 
 } // namespace impl
-} // namespace logging
+
+
+log_info::log_info()
+	: log_level(logging::log_level::debug_level)
+	, module_id(nullptr)
+	, filename(nullptr)
+	, line(-1)
+	, function_name(nullptr)
+{}
 
 
 stream_holder::stream_holder(logging::impl::log_writer* log_writer) 
@@ -76,11 +82,16 @@ stream_holder::~stream_holder()
 	}
 }
 
-QDebug& stream_holder::stream() const
+QDebug& stream_holder::out() const
 {
 	return shared_data_->stream_;
 }
 
+log_info& stream_holder::log_info()
+{
+	return shared_data_->log_info_;
+}
+/*
 void stream_holder::set_log_level(logging::log_level log_level)
 {
 	shared_data_->log_Level_ = log_level;
@@ -99,4 +110,6 @@ void stream_holder::set_line(int line)
 void stream_holder::set_function_name(const char* function_name)
 {
 	shared_data_->function_name_ = function_name;
-}
+}*/
+
+} // namespace logging

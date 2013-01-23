@@ -19,21 +19,32 @@ log_writer::~log_writer()
 logging::stream_holder log_writer::make_stream(logging::log_level log_level, const char* filename, int line, const char* function_name)
 {
 	stream_holder stream_holder(this);
-	stream_holder.set_log_level(log_level);
-	stream_holder.set_filename(filename);
-	stream_holder.set_line(line);
-	stream_holder.set_function_name(function_name);
+	log_info& log_info = stream_holder.log_info();
+	log_info.log_level = log_level;
+	log_info.filename = filename;
+	log_info.line = line;
+	log_info.function_name = function_name;
 
 	return stream_holder;
 }
 
-void log_writer::write(logging::log_level log_level, const char* file, int line, const char* function_name, const QString& message)
+logging::stream_holder log_writer::make_stream(logging::log_level log_level, const char* module_id, const char* filename, int line, const char* function_name)
+{
+	stream_holder stream_holder(this);
+	log_info& log_info = stream_holder.log_info();
+	log_info.module_id = module_id;
+	log_info.log_level = log_level;
+	log_info.filename = filename;
+	log_info.line = line;
+	log_info.function_name = function_name;
+
+	return stream_holder;
+}
+
+void log_writer::write(const logging::log_info& log_info, const QString& message)
 {
 	//write to appenders
 
-	Q_UNUSED(log_level);
-	Q_UNUSED(file);
-	Q_UNUSED(line);
-	Q_UNUSED(function_name);
+	Q_UNUSED(log_info);
 	Q_UNUSED(message);
 }

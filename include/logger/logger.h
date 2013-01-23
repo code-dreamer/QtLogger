@@ -32,9 +32,10 @@ private:
 
 public:
 	stream_holder make_stream(log_level log_level, const char* file, int line, const char* function_name);
+	stream_holder make_stream(const char* module_id, log_level log_level, const char* file, int line, const char* function_name);
 	//QDebug stream(qint64 lib_id, const char* file, int line, const char* function);
 	//QDebug stream(const char* lib_id_str, const char* file, int line, const char* function);
-	void write(log_level log_level, const char* file, int line, const char* function_name, const QString& message);
+	void write(const log_info& log_info, const QString& message);
 	
 #pragma warning(push)
 #pragma warning(disable : 4251)
