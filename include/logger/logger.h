@@ -1,6 +1,7 @@
 #pragma once
 
 #pragma warning(push, 0)
+#pragma warning(disable: 4350)
 #include <QObject>
 #include <QDebug>
 #pragma warning(pop)
@@ -11,7 +12,7 @@
 namespace logging
 {
 
-enum log_level;
+enum class log_level;
 
 namespace impl
 {

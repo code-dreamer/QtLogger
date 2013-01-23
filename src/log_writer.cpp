@@ -1,4 +1,5 @@
 #pragma warning(push, 0)
+#pragma warning(disable: 4350)
 #include <QDebug>
 #pragma warning(pop)
 
@@ -29,4 +30,10 @@ logging::stream_holder log_writer::make_stream(logging::log_level log_level, con
 void log_writer::write(logging::log_level log_level, const char* file, int line, const char* function_name, const QString& message)
 {
 	//write to appenders
+
+	Q_UNUSED(log_level);
+	Q_UNUSED(file);
+	Q_UNUSED(line);
+	Q_UNUSED(function_name);
+	Q_UNUSED(message);
 }
