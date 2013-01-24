@@ -1,6 +1,6 @@
 #include "logger/stream_holder.h"
 #include "logger/log_level.h"
-#include "logger/impl/log_writer.h"
+#include "logger/impl/log_impl.h"
 #include "logger/impl/utils.h"
 
 using namespace logging;
@@ -12,7 +12,7 @@ struct stream_holder_data
 {
 	Q_DISABLE_COPY(stream_holder_data)
 
-	stream_holder_data(logging::impl::log_writer* log_writer)
+	stream_holder_data(logging::impl::log_impl* log_writer)
 	: stream_(&log_line_)
 	, log_writer_(log_writer)
 	{}
@@ -27,7 +27,7 @@ struct stream_holder_data
 	QDebug stream_;
 	QString log_line_;
 
-	logging::impl::log_writer* log_writer_;
+	logging::impl::log_impl* log_writer_;
 	/*logging::log_level log_Level_;
 	const char* filename_;
 	int line_;
@@ -47,7 +47,7 @@ log_info::log_info()
 {}
 
 
-stream_holder::stream_holder(logging::impl::log_writer* log_writer) 
+stream_holder::stream_holder(logging::impl::log_impl* log_writer) 
 	: shared_data_( new impl::stream_holder_data(log_writer) )
 {
 	CHECK_PTR(log_writer);

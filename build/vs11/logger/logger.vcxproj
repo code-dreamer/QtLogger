@@ -12,7 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Src\logger.cpp" />
-    <ClCompile Include="..\..\..\src\log_writer.cpp" />
+    <ClCompile Include="..\..\..\src\log_impl.cpp" />
     <ClCompile Include="..\..\..\src\stream_holder.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -32,7 +32,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\include\logger\impl\log_writer.h">
+    <CustomBuild Include="..\..\..\include\logger\impl\log_impl.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>

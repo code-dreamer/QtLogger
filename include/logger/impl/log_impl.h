@@ -13,13 +13,13 @@ enum class capture_type;
 
 namespace impl {
 
-class log_writer
+class log_impl
 {
-	Q_DISABLE_COPY(log_writer);
+	Q_DISABLE_COPY(log_impl);
 
 public:
-	log_writer();
-	~log_writer();
+	log_impl();
+	~log_impl();
 
 public:
 	void set_capture_data(capture_type capture_type);

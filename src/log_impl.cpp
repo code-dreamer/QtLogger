@@ -7,7 +7,7 @@
 #include "logger/log_level.h"
 #include "logger/log_level.h"
 #include "logger/capture_type.h"
-#include "logger/impl/log_writer.h"
+#include "logger/impl/log_impl.h"
 #include "logger/impl/utils.h"
 #include "logger/impl/bit_tools.h"
 
@@ -124,16 +124,16 @@ QString formate_log_entry(const log_info& log_info, const QString& message)
 } // namespace
 
 
-log_writer::log_writer()
+log_impl::log_impl()
 	: capture_type_(capture_type::no_capture)
 {
 }
 
-log_writer::~log_writer()
+log_impl::~log_impl()
 {
 }
 
-logging::stream_holder log_writer::make_stream(log_level log_level, const char* filename, int line, const char* function_name, const char* lib_id)
+logging::stream_holder log_impl::make_stream(log_level log_level, const char* filename, int line, const char* function_name, const char* lib_id)
 {
 	stream_holder stream_holder(this);
 	log_info& log_info = stream_holder.log_info();
@@ -148,12 +148,12 @@ logging::stream_holder log_writer::make_stream(log_level log_level, const char* 
 	return stream_holder;
 }
 
-void log_writer::set_capture_data(logging::capture_type capture_type)
+void log_impl::set_capture_data(logging::capture_type capture_type)
 {
 	capture_type_ = capture_type;
 }
 
-void log_writer::write(const log_info& log_info, const QString& message)
+void log_impl::write(const log_info& log_info, const QString& message)
 {
 	QString log_entry = formate_log_entry(log_info, message);
 

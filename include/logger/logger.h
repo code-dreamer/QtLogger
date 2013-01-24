@@ -13,8 +13,9 @@
 namespace logging {
 enum class log_level;
 enum class capture_type;
+
 namespace impl {
-class log_writer;
+class log_impl;
 } // namespace impl
 
 class LOGGER_EXPORT logger
@@ -41,7 +42,7 @@ private:
 #pragma warning(push)
 #pragma warning(disable : 4251)
 private:
-	QScopedPointer<impl::log_writer> log_writer_;
+	QScopedPointer<impl::log_impl> log_impl_;
 #pragma warning(pop)
 };
 

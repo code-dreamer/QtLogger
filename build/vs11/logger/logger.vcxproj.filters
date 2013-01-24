@@ -41,10 +41,10 @@
     <ClCompile Include="..\..\..\Src\Logger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\log_writer.cpp">
+    <ClCompile Include="..\..\..\src\stream_holder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\stream_holder.cpp">
+    <ClCompile Include="..\..\..\src\log_impl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -58,13 +58,13 @@
     <CustomBuild Include="..\..\..\include\logger\log_level.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\include\logger\impl\log_writer.h">
-      <Filter>Header Files\impl</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\..\..\include\logger\impl\logger_lib_switch.h">
       <Filter>Header Files\impl</Filter>
     </CustomBuild>
     <CustomBuild Include="..\..\..\include\logger\impl\utils.h">
+      <Filter>Header Files\impl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\include\logger\impl\log_impl.h">
       <Filter>Header Files\impl</Filter>
     </CustomBuild>
   </ItemGroup>

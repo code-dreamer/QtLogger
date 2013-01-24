@@ -16,7 +16,7 @@ enum class log_level;
 
 namespace impl {
 struct stream_holder_data;
-class log_writer;
+class log_impl;
 }; // namespace impl
 
 struct LOGGER_EXPORT log_info
@@ -35,7 +35,7 @@ struct LOGGER_EXPORT log_info
 class LOGGER_EXPORT stream_holder
 {
 public:
-	stream_holder(logging::impl::log_writer* log_writer);
+	stream_holder(logging::impl::log_impl* log_writer);
 	stream_holder(stream_holder& other);
 	stream_holder(const stream_holder&& other);
 	stream_holder& operator=(stream_holder& other);
