@@ -98,27 +98,38 @@ QString formate_log_entry(const log_info& log_info, const QString& message)
 	}
 	out << indent_str;
 
+	QString source_info;
+	QTextStream source_info_out(&source_info);
+
 	if (log_info.lib_id != nullptr) {
-		out << log_info.lib_id << _S(" ");
+		source_info_out << log_info.lib_id;
 	}
 
 	if (log_info.function_name != nullptr) {
-		out << log_info.function_name << _S(" ");
+		if (!source_info.isEmpty()) {
+			source_info_out << _S(", ");
+		}
+		source_info_out << log_info.function_name;
 	}
 
 	if (log_info.filename != nullptr) {
-		out << log_info.filename << _S(" ");
-	}
+		if (!source_info.isEmpty()) {
+			source_info_out << _S(", ");
+		}
 
-	if (log_info.line >= 0) {
-		out << _S(":") << log_info.line;
+		QString file_info = _S(log_info.filename);
+		if (log_info.line >= 0) {
+			file_info.push_back( QString(_S(": %1")).arg(log_info.line) );
+		}
+
+		source_info_out << file_info;
 	}
 
 	if (!log_info.captured_data.isEmpty()) {
 		// write captured data
 	}
 
-	out << endl;
+	out << source_info << endl;
 
 	return entry;
 }
