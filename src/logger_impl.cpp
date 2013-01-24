@@ -7,7 +7,8 @@
 #include "logger/log_level.h"
 #include "logger/log_level.h"
 #include "logger/capture_type.h"
-#include "logger/impl/log_impl.h"
+#include "logger/log_writer_base.h"
+#include "logger/impl/logger_impl.h"
 #include "logger/impl/utils.h"
 #include "logger/impl/bit_tools.h"
 
@@ -124,16 +125,21 @@ QString formate_log_entry(const log_info& log_info, const QString& message)
 } // namespace
 
 
-log_impl::log_impl()
-	: capture_type_(capture_type::no_capture)
+logger_impl::logger_impl()
+	//: capture_type_(capture_type::no_capture)
 {
 }
 
-log_impl::~log_impl()
+logger_impl::~logger_impl()
 {
+	// cleanup writers
+	QReadLocker appenders_locker(&log_writers_lock_);
+	foreach (log_writer_base* log_writer, log_writers_) {
+		safeDelete(log_writer);
+	}
 }
 
-logging::stream_holder log_impl::make_stream(log_level log_level, const char* filename, int line, const char* function_name, const char* lib_id)
+logging::stream_holder logger_impl::make_stream(log_level log_level, const char* filename, int line, const char* function_name, const char* lib_id)
 {
 	stream_holder stream_holder(this);
 	log_info& log_info = stream_holder.log_info();
@@ -143,19 +149,41 @@ logging::stream_holder log_impl::make_stream(log_level log_level, const char* fi
 	log_info.filename = filename;
 	log_info.line = line;
 	log_info.function_name = function_name;
-	log_info.captured_data = capture_data(capture_type_);
+	log_info.captured_data;// = capture_data(capture_type_);
 
 	return stream_holder;
 }
 
-void log_impl::set_capture_data(logging::capture_type capture_type)
+void logger_impl::set_capture_data(logging::capture_type capture_type)
 {
-	capture_type_ = capture_type;
+	ASSERT(false); // not implemented yet
+	Q_UNUSED(capture_type);
+	//capture_type_ = capture_type;
 }
 
-void log_impl::write(const log_info& log_info, const QString& message)
+void logger_impl::write(const log_info& log_info, const QString& message)
 {
-	QString log_entry = formate_log_entry(log_info, message);
+	const QString log_entry = formate_log_entry(log_info, message);
 
-	//write to appenders
+	QReadLocker locker(&log_writers_lock_);
+
+	foreach (log_writer_base* log_writer, log_writers_) {
+		log_writer->write(log_entry);
+	}
+
+	if (log_info.log_level == log_level::fatal_level) {
+		abort();
+	}
+}
+
+bool logger_impl::add_log_writer(log_writer_base* taked_log_writer)
+{
+	QWriteLocker locker(&log_writers_lock_);
+
+	if (!log_writers_.contains(taked_log_writer)) {
+		log_writers_.append(taked_log_writer);
+		return true;
+	}
+
+	return false;
 }

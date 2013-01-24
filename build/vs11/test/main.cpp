@@ -10,6 +10,8 @@
 
 #include "logger/logger.h"
 #include "logger/log_level.h"
+#include "logger/file_log_writer.h"
+#include "logger/debug_writer.h"
 
 void TestLogSingleton()
 {/*
@@ -57,6 +59,10 @@ void TestLog()
 	const char first_lib_id_str[] = "first_lib_id";
 
 	logging::logger* custom_logger = logging::create_logger();
+	logging::file_log_writer* file_log = new logging::file_log_writer(QLatin1String("test_log.txt"));
+	logging::debug_writer* debug_writer = new logging::debug_writer();
+	custom_logger->add_log_writer(file_log);
+	custom_logger->add_log_writer(debug_writer);
 	/*custom_logger->set_log_level(logging::log_level::debug_level);
 	custom_logger->set_log_level(first_lib_id, logging::log_level::debug_level);
 	custom_logger->set_additional_capture_info(logging::line | logging:: logging::thread_id Logging::proc_id | Logging::thread_id );
@@ -77,8 +83,8 @@ void TestLog()
 
 	int val = 123;
 	//custom_logger->make_stream(logging::log_level::debug_level, __FILE__, __LINE__, Q_FUNC_INFO).stream() << message << message << 123;
-	custom_logger->make_stream(logging::log_level::debug_level, __FILE__, __LINE__, Q_FUNC_INFO).out() << "val = " << 123;
-	custom_logger->make_stream(logging::log_level::debug_level, __FILE__, __LINE__, Q_FUNC_INFO, first_lib_id_str).out() << "val = " << 123;
+	custom_logger->make_stream(logging::log_level::debug_level, __FILE__, __LINE__, Q_FUNC_INFO).out() << "val =" << 123 << message;
+	custom_logger->make_stream(logging::log_level::warning_level, __FILE__, __LINE__, Q_FUNC_INFO, first_lib_id_str).out() << "val =" << 123 << message;
 	//custom_logger->make_stream(logging::log_level::debug_level, __FILE__, __LINE__, Q_FUNC_INFO) << message << message;
 }
 

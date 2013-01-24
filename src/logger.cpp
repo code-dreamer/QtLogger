@@ -1,12 +1,14 @@
 #include "logger/logger.h"
 #include "logger/log_level.h"
-#include "logger/impl/log_impl.h"
+#include "logger/impl/logger_impl.h"
 #include "logger/impl/utils.h"
+
 
 using namespace logging;
 
+
 logger::logger()
-	: log_impl_( new impl::log_impl() )
+	: log_impl_( new impl::logger_impl() )
 {
 }
 
@@ -31,17 +33,12 @@ void logger::set_capture_data(logging::capture_type capture_type)
 	log_impl_->set_capture_data(capture_type);
 }
 
-/*
-QDebug Logger::stream(qint64 lib_id, const char* file, int line, const char* function)
+bool logger::add_log_writer(log_writer_base* taked_log_writer)
 {
+	CHECK_PTR(taked_log_writer);
 
+	return log_impl_->add_log_writer(taked_log_writer);
 }
-
-QDebug Logger::stream(const char* lib_id_str, const char* file, int line, const char* function)
-{
-
-}
-*/
 
 void logger::write(const log_info& log_info, const QString& message)
 {

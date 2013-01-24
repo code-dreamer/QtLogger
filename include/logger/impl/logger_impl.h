@@ -2,7 +2,8 @@
 
 #pragma warning(push, 0)
 #include <QScopedPointer>
-#include <QMutex>
+//#include <QMutex>
+#include <QReadWriteLock>
 #pragma warning(pop)
 
 #include "logger/stream_holder.h"
@@ -10,27 +11,28 @@
 namespace logging {
 
 enum class capture_type;
+class log_writer_base;
 
 namespace impl {
 
-class log_impl
+class logger_impl
 {
-	Q_DISABLE_COPY(log_impl);
+	Q_DISABLE_COPY(logger_impl);
 
 public:
-	log_impl();
-	~log_impl();
+	logger_impl();
+	~logger_impl();
 
 public:
 	void set_capture_data(capture_type capture_type);
-
 	logging::stream_holder make_stream(log_level log_level, const char* file, int line, const char* function_name, const char* lib_id = nullptr);
-	
 	void write(const logging::log_info& log_info, const QString& message);
-	//void write(log_level log_level, const char* file, int line, const char* function_name, const QString& message);
+	bool add_log_writer(log_writer_base* taked_log_writer);
 
 private:
-	capture_type capture_type_;
+	//capture_type capture_type_;
+	QList<log_writer_base*> log_writers_;
+	QReadWriteLock log_writers_lock_;
 };
 
 } // namespace impl

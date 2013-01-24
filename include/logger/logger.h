@@ -6,17 +6,21 @@
 #include <QDebug>
 #pragma warning(pop)
 
-#include "logger/impl/logger_lib_switch.h"
+#include "logger/logger_lib_switch.h"
 #include "logger/stream_holder.h"
 #include "logger/capture_type.h"
+
 
 namespace logging {
 enum class log_level;
 enum class capture_type;
 
+class log_writer_base;
+
 namespace impl {
-class log_impl;
+class logger_impl;
 } // namespace impl
+
 
 class LOGGER_EXPORT logger
 {
@@ -36,16 +40,18 @@ public:
 	//QDebug stream(qint64 lib_id, const char* file, int line, const char* function);
 	//QDebug stream(const char* lib_id_str, const char* file, int line, const char* function);
 
+	bool add_log_writer(log_writer_base* taked_log_writer);
+
 private:
 	void write(const log_info& log_info, const QString& message);
 	
 #pragma warning(push)
 #pragma warning(disable : 4251)
 private:
-	QScopedPointer<impl::log_impl> log_impl_;
+	QScopedPointer<impl::logger_impl> log_impl_;
 #pragma warning(pop)
 };
 
 LOGGER_EXPORT logger* create_logger();
 
-} // logging
+} // namespace logging
