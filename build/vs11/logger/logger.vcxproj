@@ -111,6 +111,10 @@
       </AdditionalInputs>
     </CustomBuild>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\include\logger\capture_type.h" />
+    <ClInclude Include="..\..\..\include\logger\impl\bit_tools.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{12474300-872E-498B-863A-7A653F421D92}</ProjectGuid>
     <Keyword>Qt4VSv1.0</Keyword>

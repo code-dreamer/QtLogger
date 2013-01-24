@@ -75,6 +75,19 @@
 #endif
 
 
+#ifdef _S
+#	error "_S already defined"
+#else
+#	define _S(string)	QLatin1String(string)
+#endif
+
+#ifdef _C
+#	error "_C already defined"
+#else
+#	define _C(symbol)	QLatin1Char(symbol)
+#endif
+
+
 template<typename T>
 static void safeDelete(T*& ptr)
 {
@@ -98,3 +111,10 @@ static void safeSeleteA(T*& ptr)
 		ptr = nullptr;
 	}
 }
+
+
+// x=target, y=mask
+#define BITMASK_SET(x,y) ((x) |= (y))
+#define BITMASK_CLEAR(x,y) ((x) &= (~(y)))
+#define BITMASK_FLIP(x,y) ((x) ^= (y))
+#define BITMASK_CHECK(x,y) ((x) & (y))

@@ -3,6 +3,7 @@
 #pragma warning(disable: 4127)
 #include <QtCore/QCoreApplication>
 #include <QTextCodec>
+#include <QDateTime>
 #pragma warning(pop)
 
 //#pragma warning(disable: 4127)
@@ -56,10 +57,19 @@ void TestLog()
 	const char first_lib_id_str[] = "first_lib_id";
 
 	logging::logger* custom_logger = logging::create_logger();
-	//custom_logger->set_additional_capture_info( Logging::thread_id_info );
+	/*custom_logger->set_log_level(logging::log_level::debug_level);
+	custom_logger->set_log_level(first_lib_id, logging::log_level::debug_level);
+	custom_logger->set_additional_capture_info(logging::line | logging:: logging::thread_id Logging::proc_id | Logging::thread_id );
 
-	//ConsoleAppender* consoleAppender = new ConsoleAppender();
-	//custom_logger->registerAppender(consoleAppender);
+	ConsoleAppender* consoleAppender = new ConsoleAppender();
+	custom_logger->registerAppender(consoleAppender);
+	custom_logger->registerAppender(first_lib_id, consoleAppender);
+	custom_logger->registerAppender(logging::log_level::info_level, consoleAppender);
+	custom_logger->registerAppender(first_lib_id, logging::log_level::info_level | logging::log_level::warning_level, consoleAppender);
+	*/
+
+	//console_writer* console_writer = new console_writer();
+	//custom_logger->addWriter(console_writer);
 
 	QString message = QTextCodec::codecForLocale()->toUnicode("привет");
 	
@@ -68,7 +78,7 @@ void TestLog()
 	int val = 123;
 	//custom_logger->make_stream(logging::log_level::debug_level, __FILE__, __LINE__, Q_FUNC_INFO).stream() << message << message << 123;
 	custom_logger->make_stream(logging::log_level::debug_level, __FILE__, __LINE__, Q_FUNC_INFO).out() << "val = " << 123;
-	custom_logger->make_stream(first_lib_id_str, logging::log_level::debug_level, __FILE__, __LINE__, Q_FUNC_INFO).out() << "val = " << 123;
+	custom_logger->make_stream(logging::log_level::debug_level, __FILE__, __LINE__, Q_FUNC_INFO, first_lib_id_str).out() << "val = " << 123;
 	//custom_logger->make_stream(logging::log_level::debug_level, __FILE__, __LINE__, Q_FUNC_INFO) << message << message;
 }
 

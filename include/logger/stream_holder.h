@@ -5,6 +5,7 @@
 #include <functional>
 #include <QVariant>
 #include <QDebug>
+#include <QDateTime>
 #pragma warning(pop)
 
 #include "logger/impl/logger_lib_switch.h"
@@ -23,10 +24,12 @@ struct LOGGER_EXPORT log_info
 	log_info();
 
 	logging::log_level log_level;
-	const char* module_id;
+	const char* lib_id;
 	const char* filename;
 	int line;
 	const char* function_name;
+	QString captured_data;
+	QDateTime time_stamp;
 };
 
 class LOGGER_EXPORT stream_holder

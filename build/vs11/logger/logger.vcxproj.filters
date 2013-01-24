@@ -68,4 +68,12 @@
       <Filter>Header Files\impl</Filter>
     </CustomBuild>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\include\logger\capture_type.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\logger\impl\bit_tools.h">
+      <Filter>Header Files\impl</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

@@ -5,15 +5,13 @@
 #include <QMutex>
 #pragma warning(pop)
 
-#include "logger/log_level.h"
 #include "logger/stream_holder.h"
 
-namespace logging
-{
-namespace impl
-{
+namespace logging {
 
-class writer_device;
+enum class capture_type;
+
+namespace impl {
 
 class log_writer
 {
@@ -24,12 +22,16 @@ public:
 	~log_writer();
 
 public:
-	logging::stream_holder make_stream(logging::log_level log_level, const char* filename, int line, const char* function_name);
-	logging::stream_holder make_stream(log_level log_level, const char* module_id, const char* file, int line, const char* function_name);
+	void set_capture_data(capture_type capture_type);
+
+	logging::stream_holder make_stream(log_level log_level, const char* file, int line, const char* function_name, const char* lib_id = nullptr);
 	
 	void write(const logging::log_info& log_info, const QString& message);
 	//void write(log_level log_level, const char* file, int line, const char* function_name, const QString& message);
+
+private:
+	capture_type capture_type_;
 };
 
-} // impl
-} // logging
+} // namespace impl
+} // namespace logging

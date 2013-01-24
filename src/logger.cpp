@@ -15,25 +15,21 @@ logger::~logger()
 {
 }
 
-stream_holder logger::make_stream(log_level log_level, const char* file, int line, const char* function_name)
+stream_holder logger::make_stream(log_level log_level, const char* file, int line, const char* function_name, const char* lib_id)
 {
 	CHECK_PTR(log_writer_);
+	CHECK_CSTRING(function_name);
 	CHECK_CSTRING(file);
 	ASSERT(line > 0);
-	CHECK_CSTRING(function_name);
 
-	return log_writer_->make_stream(log_level, file, line, function_name);
+	return log_writer_->make_stream(log_level, file, line, function_name, lib_id);
 }
 
-stream_holder logger::make_stream(const char* module_id, log_level log_level, const char* file, int line, const char* function_name)
+void logger::set_capture_data(logging::capture_type capture_type)
 {
-	CHECK_PTR(log_writer_);
-	CHECK_CSTRING(function_name);
-	CHECK_CSTRING(file);
-	ASSERT(line > 0);
-	CHECK_CSTRING(module_id);
+	ASSERT(capture_type::no_capture <= capture_type && capture_type < capture_type::invalid);
 
-	return log_writer_->make_stream(log_level, module_id, file, line, function_name);
+	log_writer_->set_capture_data(capture_type);
 }
 
 /*

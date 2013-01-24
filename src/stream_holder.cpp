@@ -40,7 +40,7 @@ struct stream_holder_data
 
 log_info::log_info()
 	: log_level(logging::log_level::debug_level)
-	, module_id(nullptr)
+	, lib_id(nullptr)
 	, filename(nullptr)
 	, line(-1)
 	, function_name(nullptr)
