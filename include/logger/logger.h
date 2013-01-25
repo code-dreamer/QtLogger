@@ -38,6 +38,8 @@ public:
 	stream_helper stream_helper(log_level log_level, const char* file, int line, const char* function_name, const char* lib_id = nullptr);
 	bool add_log_writer(log_writer_base* taked_log_writer);
 
+	void handl_qt_log(bool handle);
+
 private:
 	void write(const log_info& log_info, const QString& message);
 	

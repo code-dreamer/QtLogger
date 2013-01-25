@@ -20,6 +20,7 @@ void TestLogSingleton()
 
 	logging::debug_writer* debug_writer = new logging::debug_writer();
 	logging::single_logger()->add_log_writer(debug_writer);
+	logging::single_logger()->handl_qt_log(true);
 
 	LOG_DEBUG() << "val =" << 123;
 	LIB_LOG_DEBUG(first_lib_id_str) << "val =" << 123;
@@ -123,5 +124,7 @@ int main(int argc, char *argv[])
 	//TestLog();
 	TestLogSingleton();
 	
-	return a.exec();
+	return 0;
+	
+	//return a.exec();
 }

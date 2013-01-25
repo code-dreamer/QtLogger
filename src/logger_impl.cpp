@@ -2,6 +2,7 @@
 #pragma warning(disable: 4350)
 #include <QDebug>
 #include <QStringList>
+#include <QtGlobal>
 #pragma warning(pop)
 
 #include "logger/log_level.h"
@@ -131,11 +132,47 @@ QString formate_log_entry(const log_info& log_info, const QString& message)
 
 	return entry;
 }
+
+logging::impl::logger_impl* qt_log_writer = nullptr;
+
+void qt_message_handler(QtMsgType type, const QMessageLogContext& message_context, const QString& message)
+{
+	log_info log_info;
+	log_info.time_stamp = QDateTime::currentDateTime();
+	log_info.lib_id = "Qt " QT_VERSION_STR;
+	log_info.filename = message_context.file;
+	log_info.line = message_context.line;
+	log_info.function_name = message_context.function;
+
+	switch (type) {
+	case QtDebugMsg:
+		log_info.log_level = log_level::debug_level;
+		break;
+	case QtWarningMsg:
+		log_info.log_level = log_level::warning_level;
+		break;
+	case QtCriticalMsg:
+		log_info.log_level = log_level::critical_level;
+		break;
+	case QtFatalMsg:
+		log_info.log_level = log_level::fatal_level;
+		break;
+	default:
+		ASSERT(false);
+	}
+
+	CHECK_PTR(qt_log_writer);
+	if (qt_log_writer != nullptr) {
+		qt_log_writer->write(log_info, message);
+	}
+}
+
 } // namespace
 
 
 logger_impl::logger_impl()
 	//: capture_type_(capture_type::no_capture)
+	: prev_qt_log_handler_(nullptr)
 {
 }
 
@@ -146,6 +183,8 @@ logger_impl::~logger_impl()
 	foreach (log_writer_base* log_writer, log_writers_) {
 		safeDelete(log_writer);
 	}
+
+	handl_qt_log(false);
 }
 
 stream_helper logger_impl::stream_helper(log_level log_level, const char* filename, int line, const char* function_name, const char* lib_id)
@@ -158,7 +197,7 @@ stream_helper logger_impl::stream_helper(log_level log_level, const char* filena
 	log_info.filename = filename;
 	log_info.line = line;
 	log_info.function_name = function_name;
-	log_info.captured_data;// = capture_data(capture_type_);
+	//log_info.captured_data;// = capture_data(capture_type_);
 
 	return stream_helper;
 }
@@ -195,4 +234,17 @@ bool logger_impl::add_log_writer(log_writer_base* taked_log_writer)
 	}
 
 	return false;
+}
+
+void logger_impl::handl_qt_log(bool handle)
+{
+	if (handle) {
+		qt_log_writer = this;
+		prev_qt_log_handler_ = qInstallMessageHandler(qt_message_handler);
+	}
+	else if (qt_log_writer == this) {
+		qInstallMessageHandler(prev_qt_log_handler_);
+		prev_qt_log_handler_ = nullptr;
+		qt_log_writer = nullptr;
+	}
 }

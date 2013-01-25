@@ -43,6 +43,11 @@ void logger::write(const log_info& log_info, const QString& message)
 	log_impl_->write(log_info, message);
 }
 
+void logger::handl_qt_log(bool handle)
+{
+	log_impl_->handl_qt_log(handle);
+}
+
 logger* logging::create_logger()
 {
 	return new logger();
