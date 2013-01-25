@@ -35,19 +35,21 @@ struct LOGGER_EXPORT log_info
 };
 
 
-class LOGGER_EXPORT stream_holder
+class LOGGER_EXPORT stream_helper
 {
-public:
-	stream_holder(logging::impl::logger_impl* log_writer);
-	stream_holder(stream_holder& other);
-	stream_holder(const stream_holder&& other);
-	stream_holder& operator=(stream_holder& other);
-	~stream_holder();
+	friend class logging::impl::logger_impl;
 
 public:
-	QDebug& out() const;
+	stream_helper(logging::impl::logger_impl* log_writer);
+	stream_helper(stream_helper& other);
+	stream_helper(const stream_helper&& other);
+	stream_helper& operator=(stream_helper& other);
+	~stream_helper();
 
-public: // TODO: make private
+public:
+	QDebug& stream() const;
+
+private:
 	log_info& log_info();
 
 private:

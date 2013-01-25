@@ -5,17 +5,15 @@
 #pragma warning(pop)
 
 #include "logger/log_level.h"
-#include "logger/log_level.h"
+#include "logger/stream_helper.h"
 #include "logger/capture_type.h"
 #include "logger/log_writer_base.h"
 #include "logger/impl/logger_impl.h"
 #include "logger/impl/utils.h"
 #include "logger/impl/bit_tools.h"
 
-
 using namespace logging;
 using namespace logging::impl;
-
 
 namespace {
 QString capture_data(capture_type capture_type)
@@ -150,10 +148,10 @@ logger_impl::~logger_impl()
 	}
 }
 
-logging::stream_holder logger_impl::make_stream(log_level log_level, const char* filename, int line, const char* function_name, const char* lib_id)
+stream_helper logger_impl::stream_helper(log_level log_level, const char* filename, int line, const char* function_name, const char* lib_id)
 {
-	stream_holder stream_holder(this);
-	log_info& log_info = stream_holder.log_info();
+	logging::stream_helper stream_helper(this);
+	log_info& log_info = stream_helper.log_info();
 	log_info.time_stamp = QDateTime::currentDateTime();
 	log_info.lib_id = lib_id;
 	log_info.log_level = log_level;
@@ -162,7 +160,7 @@ logging::stream_holder logger_impl::make_stream(log_level log_level, const char*
 	log_info.function_name = function_name;
 	log_info.captured_data;// = capture_data(capture_type_);
 
-	return stream_holder;
+	return stream_helper;
 }
 
 void logger_impl::set_capture_data(logging::capture_type capture_type)

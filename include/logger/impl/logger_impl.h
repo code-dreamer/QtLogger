@@ -2,11 +2,10 @@
 
 #pragma warning(push, 0)
 #include <QScopedPointer>
-//#include <QMutex>
 #include <QReadWriteLock>
 #pragma warning(pop)
 
-#include "logger/stream_holder.h"
+#include "logger/stream_helper.h"
 
 namespace logging {
 
@@ -25,7 +24,7 @@ public:
 
 public:
 	void set_capture_data(capture_type capture_type);
-	logging::stream_holder make_stream(log_level log_level, const char* file, int line, const char* function_name, const char* lib_id = nullptr);
+	stream_helper stream_helper(log_level log_level, const char* file, int line, const char* function_name, const char* lib_id = nullptr);
 	void write(const logging::log_info& log_info, const QString& message);
 	bool add_log_writer(log_writer_base* taked_log_writer);
 

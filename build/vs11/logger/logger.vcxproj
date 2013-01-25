@@ -11,12 +11,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\include\logger\single_logger.cpp" />
     <ClCompile Include="..\..\..\src\debug_writer.cpp" />
     <ClCompile Include="..\..\..\src\file_log_writer.cpp" />
     <ClCompile Include="..\..\..\Src\logger.cpp" />
     <ClCompile Include="..\..\..\src\logger_impl.cpp" />
     <ClCompile Include="..\..\..\src\log_writer_base.cpp" />
-    <ClCompile Include="..\..\..\src\stream_holder.cpp" />
+    <ClCompile Include="..\..\..\src\stream_helper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\..\include\logger\impl\utils.h">
@@ -51,7 +52,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </AdditionalInputs>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\include\logger\stream_holder.h">
+    <CustomBuild Include="..\..\..\include\logger\stream_helper.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
@@ -105,6 +106,7 @@
     <ClInclude Include="..\..\..\include\logger\logger_lib_switch.h" />
     <ClInclude Include="..\..\..\include\logger\log_writer_base.h" />
     <ClInclude Include="..\..\..\include\logger\impl\bit_tools.h" />
+    <ClInclude Include="..\..\..\include\logger\single_logger.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{12474300-872E-498B-863A-7A653F421D92}</ProjectGuid>

@@ -7,7 +7,7 @@
 #pragma warning(pop)
 
 #include "logger/logger_lib_switch.h"
-#include "logger/stream_holder.h"
+#include "logger/stream_helper.h"
 #include "logger/capture_type.h"
 
 
@@ -35,11 +35,7 @@ private:
 
 public:
 	void set_capture_data(logging::capture_type capture_type);
-
-	stream_holder make_stream(log_level log_level, const char* file, int line, const char* function_name, const char* lib_id = nullptr);
-	//QDebug stream(qint64 lib_id, const char* file, int line, const char* function);
-	//QDebug stream(const char* lib_id_str, const char* file, int line, const char* function);
-
+	stream_helper stream_helper(log_level log_level, const char* file, int line, const char* function_name, const char* lib_id = nullptr);
 	bool add_log_writer(log_writer_base* taked_log_writer);
 
 private:

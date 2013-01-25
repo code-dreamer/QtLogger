@@ -1,8 +1,7 @@
-#include "logger/stream_holder.h"
+#include "logger/stream_helper.h"
 #include "logger/log_level.h"
 #include "logger/impl/logger_impl.h"
 #include "logger/impl/utils.h"
-
 
 namespace logging {
 namespace impl {
@@ -41,24 +40,24 @@ log_info::log_info()
 {}
 
 
-stream_holder::stream_holder(logging::impl::logger_impl* log_writer) 
+stream_helper::stream_helper(logging::impl::logger_impl* log_writer) 
 	: shared_data_( new impl::stream_holder_data(log_writer) )
 {
 	CHECK_PTR(log_writer);
 }
 
-stream_holder::stream_holder(stream_holder& other)
+stream_helper::stream_helper(stream_helper& other)
 {
 	shared_data_ = other.shared_data_;
 	other.shared_data_ = nullptr;
 }
 
-stream_holder::stream_holder(const stream_holder&& other)
+stream_helper::stream_helper(const stream_helper&& other)
 {
 	shared_data_ = other.shared_data_;
 }
 
-stream_holder& stream_holder::operator=(stream_holder& other)
+stream_helper& stream_helper::operator=(stream_helper& other)
 {
 	if (this != &other) {
 		shared_data_ = other.shared_data_;
@@ -68,7 +67,7 @@ stream_holder& stream_holder::operator=(stream_holder& other)
 	return *this;
 }
 
-stream_holder::~stream_holder() 
+stream_helper::~stream_helper() 
 {
 	if ( shared_data_ != nullptr ) {
 		// this is last reference
@@ -76,12 +75,12 @@ stream_holder::~stream_holder()
 	}
 }
 
-QDebug& stream_holder::out() const
+QDebug& stream_helper::stream() const
 {
 	return shared_data_->stream_;
 }
 
-log_info& stream_holder::log_info()
+log_info& stream_helper::log_info()
 {
 	return shared_data_->log_info_;
 }

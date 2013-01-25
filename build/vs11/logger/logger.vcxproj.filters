@@ -41,9 +41,6 @@
     <ClCompile Include="..\..\..\Src\Logger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\stream_holder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\log_writer_base.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -56,12 +53,15 @@
     <ClCompile Include="..\..\..\src\logger_impl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\include\logger\single_logger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\stream_helper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\..\Include\Logger\Logger.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\include\logger\stream_holder.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="..\..\..\include\logger\log_level.h">
@@ -72,6 +72,9 @@
     </CustomBuild>
     <CustomBuild Include="..\..\..\include\logger\impl\logger_impl.h">
       <Filter>Header Files\impl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\include\logger\stream_helper.h">
+      <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +94,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\logger\logger_lib_switch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\logger\single_logger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
