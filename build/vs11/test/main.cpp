@@ -22,8 +22,14 @@ void TestLogSingleton()
 	logging::single_logger()->add_log_writer(debug_writer);
 	logging::single_logger()->handl_qt_log(true);
 
+	logging::single_logger()->set_log_level(logging::log_level::warning_level);
+
 	LOG_DEBUG() << "val =" << 123;
 	LIB_LOG_DEBUG(first_lib_id_str) << "val =" << 123;
+
+	LOG_WARNING() << "val =" << 123;
+	logging::single_logger()->set_log_level(logging::log_level::critical_level);
+	LOG_WARNING() << "val =" << 123;
 	//logging::single_logger()->stream_helper(logging::log_level::debug_level, __FILE__, __LINE__, Q_FUNC_INFO).stream() << "val =" << 123;
 	/*
 	const qint64 first_lib_id = 0x2a3e2ddb799b6970;

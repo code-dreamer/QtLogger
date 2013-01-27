@@ -173,6 +173,7 @@ void qt_message_handler(QtMsgType type, const QMessageLogContext& message_contex
 logger_impl::logger_impl()
 	//: capture_type_(capture_type::no_capture)
 	: prev_qt_log_handler_(nullptr)
+	, curr_log_level_(log_level::info_level)
 {
 }
 
@@ -211,6 +212,11 @@ void logger_impl::set_capture_data(logging::capture_type capture_type)
 
 void logger_impl::write(const log_info& log_info, const QString& message)
 {
+	// ignore log messages with level lower than current
+	if (log_info.log_level < curr_log_level_) {
+		return;
+	}
+
 	const QString log_entry = formate_log_entry(log_info, message);
 
 	QReadLocker locker(&log_writers_lock_);
@@ -247,4 +253,9 @@ void logger_impl::handl_qt_log(bool handle)
 		prev_qt_log_handler_ = nullptr;
 		qt_log_writer = nullptr;
 	}
+}
+
+void logger_impl::set_log_level(log_level log_level)
+{
+	curr_log_level_ = log_level;
 }

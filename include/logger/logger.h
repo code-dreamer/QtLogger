@@ -40,6 +40,8 @@ public:
 
 	void handl_qt_log(bool handle);
 
+	void set_log_level(log_level log_level);
+
 private:
 	void write(const log_info& log_info, const QString& message);
 	

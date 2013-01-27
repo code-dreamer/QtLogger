@@ -29,12 +29,15 @@ public:
 	bool add_log_writer(log_writer_base* taked_log_writer);
 
 	void handl_qt_log(bool handle);
+	
+	void set_log_level(log_level log_level);
 
 private:
 	//capture_type capture_type_;
 	QList<log_writer_base*> log_writers_;
 	QReadWriteLock log_writers_lock_;
 	QtMessageHandler prev_qt_log_handler_;
+	log_level curr_log_level_;
 };
 
 } // namespace impl

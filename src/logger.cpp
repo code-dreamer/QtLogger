@@ -40,12 +40,21 @@ bool logger::add_log_writer(log_writer_base* taked_log_writer)
 
 void logger::write(const log_info& log_info, const QString& message)
 {
+	CHECK_QSTRING(message);
+
 	log_impl_->write(log_info, message);
 }
 
 void logger::handl_qt_log(bool handle)
 {
 	log_impl_->handl_qt_log(handle);
+}
+
+void logger::set_log_level(log_level log_level)
+{
+	ASSERT(log_level::debug_level <= log_level && log_level < log_level::invalid_level);
+
+	log_impl_->set_log_level(log_level);
 }
 
 logger* logging::create_logger()
