@@ -4,15 +4,22 @@
 #include <QtCore/QCoreApplication>
 #include <QTextCodec>
 #include <QDateTime>
-#pragma warning(pop)
-
-//#pragma warning(disable: 4127)
 
 #include "logger/logger.h"
 #include "logger/log_level.h"
 #include "logger/file_log_writer.h"
 #include "logger/debug_writer.h"
 #include "logger/single_logger.h"
+#pragma warning(pop)
+
+//#pragma warning(disable: 4127)
+
+/*
+#include "logger/logger.h"
+#include "logger/log_level.h"
+#include "logger/file_log_writer.h"
+#include "logger/debug_writer.h"
+#include "logger/single_logger.h"*/
 
 void TestLogSingleton()
 {
