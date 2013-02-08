@@ -131,6 +131,7 @@ int main(int argc, char *argv[])
 	QCoreApplication a(argc, argv);
 
 	QTextCodec* const sourcesEncoding = QTextCodec::codecForLocale(); // assume that sources have system locale
+	QString ss = sourcesEncoding->toUnicode("тест");
 	//QTextCodec::setCodecForCStrings(sourcesEncoding);
 	//QTextCodec::setCodecForTr(sourcesEncoding);
 

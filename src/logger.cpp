@@ -2,6 +2,7 @@
 #include "logger/log_level.h"
 #include "logger/impl/logger_impl.h"
 #include "logger/impl/utils.h"
+#include "logger/capture_type.h"
 
 using namespace logging;
 

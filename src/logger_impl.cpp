@@ -82,7 +82,7 @@ QString formate_log_entry(const log_info& log_info, const QString& message)
 	QDateTime time_stamp = QDateTime::currentDateTime();
 	QString entry = time_stamp.date().toString(Qt::SystemLocaleShortDate);
 	QTextStream out(&entry);
-	out << endl << time_stamp.time().toString(_S("hh:mm:ss.zzz "));
+	out << _S(" ") << time_stamp.time().toString(_S("hh:mm:ss.zzz "));
 
 	out << log_level_to_qstring(log_info.log_level) << _S(": ");
 
@@ -128,7 +128,7 @@ QString formate_log_entry(const log_info& log_info, const QString& message)
 		// write captured data
 	}
 
-	out << source_info << endl;
+	out << source_info << endl << endl;
 
 	return entry;
 }
