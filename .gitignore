@@ -4,6 +4,7 @@
 
 # Build results
 [Bb]uild/**/*.*
+[Ll]ib/**/*.*
 
 # ui generated files
 ui_p.h
