@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
-    <BUILD_DIR>$(SolutionDir)..\..\lib\$(Configuration)\</BUILD_DIR>
+    <BUILD_DIR>$(SolutionDir)..\lib\$(Configuration)\</BUILD_DIR>
     <BUILD_TMP_DIR>$(ProjectDir)\obj\$(Configuration)\</BUILD_TMP_DIR>
   </PropertyGroup>
   <PropertyGroup>
