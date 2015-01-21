@@ -4,6 +4,7 @@
 
 namespace logging {
 LOGGER_EXPORT logger* single_logger();
+LOGGER_EXPORT void shutdown_logger(); // manually shutdown logger
 } // namespace logging
 
 

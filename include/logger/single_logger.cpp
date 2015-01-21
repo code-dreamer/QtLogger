@@ -26,4 +26,10 @@ logger* single_logger()
 	return global_logger.data();
 }
 
+void shutdown_logger()
+{
+	QMutexLocker locker(&logger_mutex);
+	global_logger.reset();
+}
+
 } // namespace logging
