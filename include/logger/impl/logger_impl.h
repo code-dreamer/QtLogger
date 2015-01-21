@@ -8,12 +8,12 @@
 #include "logger/stream_helper.h"
 
 namespace logging {
-
+;
 enum class capture_type;
 class log_writer_base;
 
 namespace impl {
-
+;
 class logger_impl
 {
 	Q_DISABLE_COPY(logger_impl);

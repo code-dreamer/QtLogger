@@ -9,7 +9,7 @@
 #include "logger/log_writer_base.h"
 
 namespace logging {
-
+;
 class LOGGER_EXPORT file_log_writer : public log_writer_base
 {
 	Q_DISABLE_COPY(file_log_writer)

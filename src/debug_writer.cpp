@@ -15,12 +15,10 @@
 namespace logging {
 
 debug_writer::debug_writer()
-{
-}
+{}
 
 debug_writer::~debug_writer()
-{
-}
+{}
 
 void debug_writer::do_write(const QString& log_entry)
 {

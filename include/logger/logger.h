@@ -8,8 +8,6 @@
 
 #include "logger/logger_lib_switch.h"
 #include "logger/stream_helper.h"
-//#include "logger/capture_type.h"
-
 
 namespace logging {
 enum class log_level;

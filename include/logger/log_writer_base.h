@@ -7,12 +7,10 @@
 
 #include "logger/logger_lib_switch.h"
 
-
 class QString;
 
-
 namespace logging {
-
+;
 enum class log_level;
 
 class LOGGER_EXPORT log_writer_base

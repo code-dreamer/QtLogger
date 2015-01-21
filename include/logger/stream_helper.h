@@ -10,7 +10,6 @@
 
 #include "logger/logger_lib_switch.h"
 
-
 namespace logging {
 
 enum class log_level;
