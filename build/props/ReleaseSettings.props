@@ -4,11 +4,6 @@
   <PropertyGroup Label="UserMacros">
     <BUILD_POSTFIX>
     </BUILD_POSTFIX>
-    <CRASHRPT_DIR>$(THIRD_PARTY_DIR)\CrashRpt_v.1.4.0_r1439</CRASHRPT_DIR>
-    <UNRAR_DIR>$(THIRD_PARTY_DIR)\unrar-4.2.4</UNRAR_DIR>
-    <LIBTORRENT_DIR>$(THIRD_PARTY_DIR)\libtorrent-rasterbar-0.16.5</LIBTORRENT_DIR>
-    <OPENSSL_DIR>$(THIRD_PARTY_DIR)\openssl-1.0.1c</OPENSSL_DIR>
-    <GLOOX_DIR>$(THIRD_PARTY_DIR)\gloox-1.0</GLOOX_DIR>
   </PropertyGroup>
   <PropertyGroup>
     <LinkIncremental>false</LinkIncremental>
@@ -43,7 +38,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <AdditionalLibraryDirectories>$(BUILD_DIR)\;$(BOOST_DIR)\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(BUILD_DIR)\</AdditionalLibraryDirectories>
       <DelayLoadDLLs>
       </DelayLoadDLLs>
       <AdditionalDependencies>Delayimp.lib;%(AdditionalDependencies)</AdditionalDependencies>

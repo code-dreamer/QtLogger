@@ -39,7 +39,7 @@
       <AdditionalOptions>/wd4127 /wd4191 /wd4365 /wd4481 /wd4512 /wd4514 /wd4619 /wd4625 /wd4626 /wd4710 /wd4668 /wd4820 /wd4986 %(AdditionalOptions)</AdditionalOptions>
       <EnablePREfast>true</EnablePREfast>
       <CompileAsManaged>false</CompileAsManaged>
-      <AdditionalIncludeDirectories>.\;$(IntDir);$(SolutionDir)..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;$(IntDir);$(SolutionDir)..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <EnableEnhancedInstructionSet>NoExtensions</EnableEnhancedInstructionSet>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>

@@ -9,10 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h</Extensions>
     </Filter>
-    <Filter Include="Form Files">
-      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
-      <Extensions>ui</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
       <Extensions>qrc;*</Extensions>
@@ -38,65 +34,65 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Src\Logger.cpp">
+    <ClCompile Include="..\..\src\Logger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\log_writer_base.cpp">
+    <ClCompile Include="..\..\src\log_writer_base.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\debug_writer.cpp">
+    <ClCompile Include="..\..\src\debug_writer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\file_log_writer.cpp">
+    <ClCompile Include="..\..\src\file_log_writer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\logger_impl.cpp">
+    <ClCompile Include="..\..\src\logger_impl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\include\logger\single_logger.cpp">
+    <ClCompile Include="..\..\include\logger\single_logger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\stream_helper.cpp">
+    <ClCompile Include="..\..\src\stream_helper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="..\..\..\Include\Logger\Logger.h">
+    <CustomBuild Include="..\..\include\Logger\Logger.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\include\logger\log_level.h">
+    <CustomBuild Include="..\..\include\logger\log_level.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\include\logger\impl\utils.h">
+    <CustomBuild Include="..\..\include\logger\impl\utils.h">
       <Filter>Header Files\impl</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\include\logger\impl\logger_impl.h">
+    <CustomBuild Include="..\..\include\logger\impl\logger_impl.h">
       <Filter>Header Files\impl</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\include\logger\stream_helper.h">
+    <CustomBuild Include="..\..\include\logger\stream_helper.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\include\logger\capture_type.h">
+    <ClInclude Include="..\..\include\logger\capture_type.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\logger\impl\bit_tools.h">
+    <ClInclude Include="..\..\include\logger\impl\bit_tools.h">
       <Filter>Header Files\impl</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\logger\log_writer_base.h">
+    <ClInclude Include="..\..\include\logger\log_writer_base.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\logger\debug_writer.h">
+    <ClInclude Include="..\..\include\logger\debug_writer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\logger\file_log_writer.h">
+    <ClInclude Include="..\..\include\logger\file_log_writer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\logger\logger_lib_switch.h">
+    <ClInclude Include="..\..\include\logger\logger_lib_switch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\logger\single_logger.h">
+    <ClInclude Include="..\..\include\logger\single_logger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

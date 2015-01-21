@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
-	<QTDIR>d:\work\QipPlugin\3rdparty\Qt5\qt</QTDIR>
     <QT_INCLUDE_DIR>$(QTDIR)\include</QT_INCLUDE_DIR>
   </PropertyGroup>
   <PropertyGroup />
@@ -13,7 +12,7 @@
       <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(QT_INCLUDE_DIR);$(QT_INCLUDE_DIR)\QtCore;$(QT_INCLUDE_DIR)\QtConcurrent;$(QT_INCLUDE_DIR)\QtGui;$(QT_INCLUDE_DIR)\GLES2;$(QT_INCLUDE_DIR)\KHR;$(QT_INCLUDE_DIR)\QtDBus;$(QT_INCLUDE_DIR)\QtNetwork;$(QT_INCLUDE_DIR)\QtOpenGL;$(QT_INCLUDE_DIR)\QtPlatformSupport;$(QT_INCLUDE_DIR)\QtPrintSupport;$(QT_INCLUDE_DIR)\QtSql;$(QT_INCLUDE_DIR)\QtTest;$(QT_INCLUDE_DIR)\QtWidgets;$(QT_INCLUDE_DIR)\QtXml;$(QT_INCLUDE_DIR)\QtZlib;$(QTDIR)\mkspecs\win32-msvc2012;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(QT_INCLUDE_DIR);$(QT_INCLUDE_DIR)\QtCore;$(QT_INCLUDE_DIR)\QtConcurrent;$(QT_INCLUDE_DIR)\QtPlatformSupport;$(QTDIR)\mkspecs\win32-msvc2013;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>QT_NO_CAST_FROM_ASCII;QT_NO_CAST_TO_ASCII;QT_NO_CAST_FROM_BYTEARRAY;QT_USE_FAST_CONCATENATION;QT_USE_FAST_OPERATOR_PLUS;QT_LARGEFILE_SUPPORT;QT_USE_QSTRINGBUILDER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Lib />
@@ -21,10 +20,6 @@
   <ItemGroup>
     <BuildMacro Include="QT_INCLUDE_DIR">
       <Value>$(QT_INCLUDE_DIR)</Value>
-    </BuildMacro>
-    <BuildMacro Include="QTDIR">
-      <Value>$(QTDIR)</Value>
-      <EnvironmentVariable>true</EnvironmentVariable>
     </BuildMacro>
   </ItemGroup>
 </Project>
