@@ -1,0 +1,2 @@
+# QtLogger
+Lightweight qt logger.
